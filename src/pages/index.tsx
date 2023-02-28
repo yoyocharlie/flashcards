@@ -19,15 +19,13 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      async () => {
         if (user) {
           const uid = user.uid;
           setUserId(uid);
-          await refresh(user.uid);
+          refresh(user.uid);
         } else {
           console.log("No user signed in")
         }
-      }
     });
   }, [userId])
 
