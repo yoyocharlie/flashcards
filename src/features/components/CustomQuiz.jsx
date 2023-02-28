@@ -77,11 +77,11 @@ const CustomQuiz = ({ currentQuiz, quizActive, setQuizActive, qNumber, setQNumbe
                     </div>
                 </fieldset>
             </form>
+        </div>
         {handleError ? 
         <div className='bg-neutral-500 text-white p-2 px-6 rounded-full text-center w-full mt-10 text-sm'>Please select an answer</div> :
         <button onClick={handleSubmit} className='bg-primaryColor text-white p-2 px-6 rounded-lg w-28 self-end mt-10 text-sm'>Submit</button>
         }        
-        </div>
     </div> :
         <div className='flex flex-col items-center shadow-xl p-7 py-5 rounded-lg w-1/5 text-center'>
             <h1 className='font-bold mb-2'>Test Completed!</h1>

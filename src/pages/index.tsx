@@ -22,11 +22,13 @@ const Home: NextPage = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const uid = user.uid;
+        setUserId(uid);
+        refresh(user.uid);
       } else {
         console.log("No user signed in")
       }
     });
-  }, [userId])
+  }, [userId, auth])
 
 
   const signUserIn = async() => {
@@ -55,8 +57,13 @@ const Home: NextPage = () => {
   const signUserOut = async() => {
     try {
       await signOut(auth);
-      setCreateActive(false);
       setUserId("");
+      setCreateActive(false);
+      setQuizActive(false);
+      setCustomQuizActive(false);
+      setCurrentQuiz("");
+      setQNumber(0);
+      setScore([]);
     } catch (error) {
       console.log(error);
     }

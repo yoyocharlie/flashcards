@@ -1,9 +1,7 @@
 // @ts-nocheck
 import React, { useEffect, useRef, useState } from 'react'
-import { addDoc, collection } from 'firebase/firestore';
-import { db } from '~/data/firebase';
 
-const CreateQuiz = ({ createQuiz }) => {
+const CreateQuiz = ({ createQuiz, setCreateActive }) => {
   const [newQuestion, setNewQuestion] = useState(false);
   const [questionInputs, setQuestionInputs] = useState({
     quizTitle: "",
@@ -27,8 +25,8 @@ const CreateQuiz = ({ createQuiz }) => {
   }
 
   const handleClick = (e) => {
-    answerRef.current = e.target.value
-    console.log(answerRef)
+    e.preventDefault();
+    setCreateActive(false);
   }
 
   
@@ -97,7 +95,7 @@ const CreateQuiz = ({ createQuiz }) => {
           }
           <h4 className='text-center font-medium text-sm mt-4'>Total Test Questions: {questionNumber > 0 ? questionNumber - 1 : 0}</h4>
           <div className='text-center mt-4'>
-            <button onClick={onSubmit} className='bg-primaryColor w-full rounded-sm py-2 px-5 text-sm text-white'>Save Test</button>
+            <button onClick={handleClick} className='bg-primaryColor w-full rounded-sm py-2 px-5 text-sm text-white'>Save Test</button>
           </div>
         </form>
       </div>
