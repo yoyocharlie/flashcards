@@ -18,11 +18,11 @@ const Home: NextPage = () => {
   const [userId, setUserId] = useState("");
 
   useEffect(() => {
-    onAuthStateChanged(auth, async (user) => {
+    onAuthStateChanged(auth, (user) => {
       if (user) {
         const uid = user.uid;
         setUserId(uid);
-        await refresh(user.uid);
+        refresh(user.uid);
       } else {
         console.log("No user signed in")
       }
@@ -53,7 +53,7 @@ const Home: NextPage = () => {
   }
 
 
-  const signUserOut = async() => {
+  const signUserOut = async () => {
     try {
       await signOut(auth);
       setUserId("");
@@ -68,9 +68,9 @@ const Home: NextPage = () => {
     }
   }
 
-  const createQuiz = async(quizArray: [], questionNumber: number) => {
-    await setDoc(doc(db, userId, `${questionNumber}`), quizArray);
-    await refresh(userId);
+  const createQuiz = (quizArray: [], questionNumber: number) => {
+    setDoc(doc(db, userId, `${questionNumber}`), quizArray);
+    refresh(userId);
   }
 
   const refresh = async(id: string) => {
