@@ -3,7 +3,7 @@ import quizCardData from '../../data/quizCardData'
 import QuizCard from './QuizCard'
 
 // @ts-ignore
-const Quizzes = ({ quizActive, setQuizActive, setCurrentQuiz, customQuizActive, setCustomQuizActive }) => {
+const Quizzes = ({ quizActive, setQuizActive, setCurrentQuiz, customQuizActive, setCustomQuizActive, userId, customQuiz }) => {
     const quizCards = quizCardData.map(quizCard => {
         return (
             <QuizCard 
@@ -15,6 +15,8 @@ const Quizzes = ({ quizActive, setQuizActive, setCurrentQuiz, customQuizActive, 
                 setCurrentQuiz={setCurrentQuiz}
                 customQuizActive={customQuizActive}
                 setCustomQuizActive={setCustomQuizActive}
+                userId={userId}
+                customQuiz={customQuiz}
             />
         )
     })

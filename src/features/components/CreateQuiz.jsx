@@ -5,7 +5,15 @@ import { db } from '~/data/firebase';
 
 const CreateQuiz = ({ createQuiz }) => {
   const [newQuestion, setNewQuestion] = useState(false);
-  const [questionInputs, setQuestionInputs] = useState({});
+  const [questionInputs, setQuestionInputs] = useState({
+    quizTitle: "",
+    question: "",
+    answer: "",
+    inputA: "",
+    inputB: "",
+    inputC: "",
+    inputD: ""
+  });
   const [questionNumber, setQuestionNumber] = useState(0);
   let answerRef = useRef(null);
   
@@ -29,6 +37,7 @@ const CreateQuiz = ({ createQuiz }) => {
     newQuestion === false && setNewQuestion(true);
     questionNumber >= 1 && createQuiz(questionInputs, questionNumber);
     setQuestionInputs({
+      quizTitle: questionInputs.quizTitle,
       question: "",
       answer: "",
       inputA: "",
@@ -39,30 +48,13 @@ const CreateQuiz = ({ createQuiz }) => {
     setQuestionNumber(questionNumber + 1);
   }
 
-  const updateQuestions = async (e) => {
-    e.preventDefault();
-    newQuestion === false && setNewQuestion(true);
-    questionNumber >= 1 && createQuiz(questionInputs, questionNumber);
-    setQuestionInputs({
-      question: "",
-      answer: "",
-      inputA: "",
-      inputB: "",
-      inputC: "",
-      inputD: ""
-    });
-    setQuestionNumber(questionNumber + 1)
-  }
-
-  
-  console.log(questionInputs)
 
   return (
     <div className='flex flex-col shadow-xl p-3 rounded-lg self-start absolute top-32 w-2/5'>
       <div className='flex flex-col rounded-lg w-full'>
         <form className='w-full'>
           <label htmlFor="testName" className='text-sm font-medium'>Test Name</label>
-          <input name='quizTitle' maxLength={20} onChange={handleInput} value={questionInputs.quizTitle} className='bg-neutral-200 border pl-2 border-neutral-300 rounded-sm w-full mt-2' type="text" id='testName' placeholder='Enter the title of your test' />
+          <input name='quizTitle' maxLength={20} onChange={handleInput} className='bg-neutral-200 border pl-2 border-neutral-300 rounded-sm w-full mt-2' value={questionInputs.quizTitle} type="text" id='testName' placeholder='Enter the title of your test' />
           {!newQuestion ? 
           <div className='text-center mt-4 bg-pinkishRed py-4 rounded-lg'>
             <button onClick={onSubmit} className='bg-neutral-600 rounded-sm py-2 px-5 text-sm text-white'>Add Question</button>
@@ -99,11 +91,11 @@ const CreateQuiz = ({ createQuiz }) => {
             </fieldset>
             <div className='flex justify-center gap-3 mt-4'>
               <button className='bg-primaryColor text-sm text-white py-1 px-4 rounded'>Cancel</button>
-              <button className='bg-neutral-600 text-sm text-white py-1 px-4 rounded'>Add Question</button>
+              <button onClick={onSubmit} className='bg-neutral-600 text-sm text-white py-1 px-4 rounded'>Add Question</button>
             </div>
           </div>
           }
-          <h4 className='text-center font-medium text-sm mt-4'>Total Test Questions: {questionNumber}</h4>
+          <h4 className='text-center font-medium text-sm mt-4'>Total Test Questions: {questionNumber > 0 ? questionNumber - 1 : 0}</h4>
           <div className='text-center mt-4'>
             <button onClick={onSubmit} className='bg-primaryColor w-full rounded-sm py-2 px-5 text-sm text-white'>Save Test</button>
           </div>

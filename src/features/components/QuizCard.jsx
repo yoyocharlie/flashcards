@@ -1,14 +1,14 @@
 import React from 'react'
 
 // @ts-ignore
-const QuizCard = ({ quizName, id, quizActive, setQuizActive, setCurrentQuiz, customQuizActive, setCustomQuizActive }) => {
+const QuizCard = ({ quizName, id, quizActive, setQuizActive, setCurrentQuiz, customQuizActive, setCustomQuizActive, userId, customQuiz }) => {
 
   const handleClick = () => {
     setCurrentQuiz(quizName);
     if (quizName !== "Custom") {
       setQuizActive(!quizActive);
     }
-    if (quizName === "Custom") {
+    if (quizName === "Custom" && userId && customQuiz.length > 0) {
       setCustomQuizActive(!customQuizActive);
     }
   };

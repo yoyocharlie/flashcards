@@ -19,13 +19,13 @@ const Navbar = ({ quizActive, setQuizActive, currentQuiz, setCurrentQuiz, qNumbe
     setQNumber(0);
     setScore([]);
   };
-  // console.log(customQuiz[qNumber].id)
 
   return (
     <div className='flex absolute top-0 w-full items-center bg-primaryColor p-4 px-6'>
         <div className='mr-auto'>
-            {!quizActive && <h1 className='text-white text-xl font-bold'>The Inventive Group - Training Modules</h1>}
+            {!quizActive && !customQuizActive && <h1 className='text-white text-xl font-bold'>The Inventive Group - Training Modules</h1>}
             {quizActive && <h1 className='text-white text-xl font-bold'>{currentQuiz}</h1>}
+            {customQuizActive && <h1 className='text-white text-xl font-bold'>{customQuiz[qNumber].quizTitle}</h1>}
         </div>
         <div className='w-60 flex'>
             {!quizActive && !customQuizActive && <Link href={'/'}><button onClick={handleClick} className='mr-auto rounded-xl bg-white px-5 py-[2px] text-sm'>All Tests</button></Link>}

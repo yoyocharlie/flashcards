@@ -4,7 +4,7 @@ import Head from "next/head";
 import Navbar from '../features/components/Navbar';
 import ContentZone from '../features/components/ContentZone';
 import { useEffect, useState } from "react";
-import { collection, addDoc, getDocs, setDoc, doc } from "firebase/firestore";
+import { collection, addDoc, getDocs, setDoc, doc, deleteDoc } from "firebase/firestore";
 import { onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
 import { auth, provider, db } from "../data/firebase";
 
@@ -32,6 +32,9 @@ const Home: NextPage = () => {
   const signUserIn = async() => {
     if (userId) {
       setCreateActive(true);
+      const colRef = collection(db, userId);
+      const snapshot = await getDocs(colRef);
+      snapshot.docs.map(v => deleteDoc(doc(colRef, v.id)))
     }
     if (!userId) {
       try {
@@ -39,13 +42,15 @@ const Home: NextPage = () => {
         const user = cred.user.uid;
         setCreateActive(true);
         setUserId(user);
-        // await addDoc(collection(db, user), quizArray);
-        refresh(cred.user.uid);
+        const colRef = collection(db, userId);
+        const snapshot = await getDocs(colRef);
+        snapshot.docs.map(v => deleteDoc(doc(colRef, v.id)))
       } catch (error) {
         console.log(error);
       }
     }
   }
+
 
   const signUserOut = async() => {
     try {
@@ -69,6 +74,7 @@ const Home: NextPage = () => {
     setCustomQuiz(quiz);
   }
 
+
   return (
     <>
       <Head>
@@ -78,8 +84,8 @@ const Home: NextPage = () => {
       </Head>
       <main>
         <Navbar  quizActive={quizActive} setQuizActive={setQuizActive} currentQuiz={currentQuiz} setCurrentQuiz={setCurrentQuiz} qNumber={qNumber} setQNumber={setQNumber} setScore={setScore} setCreateActive={setCreateActive} signUserIn={signUserIn} setCustomQuizActive={setCustomQuizActive} customQuizActive={customQuizActive} customQuiz={customQuiz} />
-        <ContentZone quizActive={quizActive} setQuizActive={setQuizActive} customQuizActive={customQuizActive} setCustomQuizActive={setCustomQuizActive} currentQuiz={currentQuiz} setCurrentQuiz={setCurrentQuiz} qNumber={qNumber} setQNumber={setQNumber} score={score} setScore={setScore} createActive={createActive} setCreateActive={setCreateActive} createQuiz={createQuiz} customQuiz={customQuiz} />
-        <button className="border border-black" onClick={signUserOut}>Sign Out</button>
+        <ContentZone quizActive={quizActive} setQuizActive={setQuizActive} customQuizActive={customQuizActive} setCustomQuizActive={setCustomQuizActive} currentQuiz={currentQuiz} setCurrentQuiz={setCurrentQuiz} qNumber={qNumber} setQNumber={setQNumber} score={score} setScore={setScore} createActive={createActive} setCreateActive={setCreateActive} createQuiz={createQuiz} customQuiz={customQuiz} userId={userId} />
+        {userId && <button className="bg-primaryColor text-sm text-white p-2 rounded absolute top-20 left-20" onClick={signUserOut}>Sign Out</button>}
       </main>
     </>
   );
