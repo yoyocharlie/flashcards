@@ -93,7 +93,7 @@ const Home: NextPage = () => {
       <main>
         <Navbar  quizActive={quizActive} setQuizActive={setQuizActive} currentQuiz={currentQuiz} setCurrentQuiz={setCurrentQuiz} qNumber={qNumber} setQNumber={setQNumber} setScore={setScore} setCreateActive={setCreateActive} signUserIn={signUserIn} setCustomQuizActive={setCustomQuizActive} customQuizActive={customQuizActive} customQuiz={customQuiz} />
         <ContentZone quizActive={quizActive} setQuizActive={setQuizActive} customQuizActive={customQuizActive} setCustomQuizActive={setCustomQuizActive} currentQuiz={currentQuiz} setCurrentQuiz={setCurrentQuiz} qNumber={qNumber} setQNumber={setQNumber} score={score} setScore={setScore} createActive={createActive} setCreateActive={setCreateActive} createQuiz={createQuiz} customQuiz={customQuiz} userId={userId} />
-        {userId && <button className="bg-primaryColor text-sm text-white p-2 rounded absolute top-20 left-20" onClick={signUserOut}>Sign Out</button>}
+        {userId && <button className="bg-primaryColor text-sm text-white p-2 rounded absolute top-20 left-20" onClick={() => signUserOut()}>Sign Out</button>}
       </main>
     </>
   );
