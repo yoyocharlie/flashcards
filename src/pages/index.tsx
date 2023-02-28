@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { type NextPage } from "next";
 import Head from "next/head";
 import Navbar from '../features/components/Navbar';
@@ -69,12 +68,12 @@ const Home: NextPage = () => {
     }
   }
 
-  const createQuiz = async(quizArray, questionNumber) => {
+  const createQuiz = async(quizArray: any, questionNumber: any) => {
     await setDoc(doc(db, userId, `${questionNumber}`), quizArray);
     refresh(userId);
   }
 
-  const refresh = async(id) => {
+  const refresh = async(id: string) => {
     const colRef = collection(db, id);
     const snapshot = await getDocs(colRef);
     const quiz = snapshot?.docs?.map(doc => ({...doc.data(), id: doc.id})) ?? [];

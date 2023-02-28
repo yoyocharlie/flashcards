@@ -1,8 +1,6 @@
-// @ts-nocheck
 import React, { useState, useRef, useEffect } from 'react'
-import quizData from '~/data/quizData'
 
-const CustomQuiz = ({ currentQuiz, quizActive, setQuizActive, qNumber, setQNumber, score, setScore, setCurrentQuiz, customQuiz, setCustomQuizActive, setCreateActive }) => {
+const CustomQuiz = ({ setQuizActive, qNumber, setQNumber, score, setScore, setCurrentQuiz, customQuiz, setCustomQuizActive, setCreateActive }) => {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [showFinalResults, setShowFinalResults] = useState(false);
   const [handleError, setHandleError] = useState(false);
@@ -49,9 +47,6 @@ const CustomQuiz = ({ currentQuiz, quizActive, setQuizActive, qNumber, setQNumbe
     &&
     setShowFinalResults(!showFinalResults)
   }
-//   console.log(customQuiz[qNumber].id)
-//   console.log(qNumber)
-//   console.log(customQuiz.length)
 
   return (
     !showFinalResults ? <div className='flex flex-col absolute top-32 w-2/5'>

@@ -4,7 +4,6 @@ import QuizQuestion from './QuizQuestion'
 import CreateQuiz from './CreateQuiz'
 import CustomQuiz from '../components/CustomQuiz'
 
-// @ts-ignore
 const ContentZone = ({ quizActive, setQuizActive, customQuizActive, setCustomQuizActive, currentQuiz, setCurrentQuiz, qNumber, setQNumber, score, setScore, createActive, setCreateActive, createQuiz, customQuiz, userId }) => {
   return (
     <div className='h-screen flex justify-center items-center'>

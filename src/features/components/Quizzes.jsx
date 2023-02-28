@@ -2,7 +2,6 @@ import React from 'react'
 import quizCardData from '../../data/quizCardData'
 import QuizCard from './QuizCard'
 
-// @ts-ignore
 const Quizzes = ({ quizActive, setQuizActive, setCurrentQuiz, customQuizActive, setCustomQuizActive, userId, customQuiz }) => {
     const quizCards = quizCardData.map(quizCard => {
         return (

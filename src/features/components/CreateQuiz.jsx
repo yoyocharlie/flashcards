@@ -1,5 +1,4 @@
-// @ts-nocheck
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 
 const CreateQuiz = ({ createQuiz, setCreateActive }) => {
   const [newQuestion, setNewQuestion] = useState(false);

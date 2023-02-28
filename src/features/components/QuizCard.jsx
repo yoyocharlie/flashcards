@@ -1,7 +1,6 @@
 import React from 'react'
 
-// @ts-ignore
-const QuizCard = ({ quizName, id, quizActive, setQuizActive, setCurrentQuiz, customQuizActive, setCustomQuizActive, userId, customQuiz }) => {
+const QuizCard = ({ quizName, quizActive, setQuizActive, setCurrentQuiz, customQuizActive, setCustomQuizActive, userId, customQuiz }) => {
 
   const handleClick = () => {
     setCurrentQuiz(quizName);
