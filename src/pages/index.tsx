@@ -3,7 +3,7 @@ import Head from "next/head";
 import Navbar from '../features/components/Navbar';
 import ContentZone from '../features/components/ContentZone';
 import { useEffect, useState } from "react";
-import { collection, addDoc, getDocs, setDoc, doc, deleteDoc } from "firebase/firestore";
+import { collection, getDocs, setDoc, doc, deleteDoc } from "firebase/firestore";
 import { onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
 import { auth, provider, db } from "../data/firebase";
 
@@ -18,16 +18,16 @@ const Home: NextPage = () => {
   const [userId, setUserId] = useState("");
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
       if (user) {
         const uid = user.uid;
         setUserId(uid);
-        refresh(user.uid);
+        await refresh(user.uid);
       } else {
         console.log("No user signed in")
       }
     });
-  }, [userId, auth])
+  }, [userId])
 
 
   const signUserIn = async() => {
@@ -68,9 +68,9 @@ const Home: NextPage = () => {
     }
   }
 
-  const createQuiz = async(quizArray: any, questionNumber: any) => {
+  const createQuiz = async(quizArray: [], questionNumber: number) => {
     await setDoc(doc(db, userId, `${questionNumber}`), quizArray);
-    refresh(userId);
+    await refresh(userId);
   }
 
   const refresh = async(id: string) => {

@@ -4,14 +4,13 @@ const CustomQuiz = ({ setQuizActive, qNumber, setQNumber, score, setScore, setCu
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [showFinalResults, setShowFinalResults] = useState(false);
   const [handleError, setHandleError] = useState(false);
-  const [answerArray, setAnswerArray] = useState([]);
   let inputRef = useRef(false);
 
   useEffect(() => {
     if(qNumber > customQuiz.length - 1){
       setShowFinalResults(!showFinalResults)
     }
-  }, [qNumber])
+  }, [qNumber, customQuiz.length, showFinalResults])
 
   let qId = customQuiz[qNumber].id
 

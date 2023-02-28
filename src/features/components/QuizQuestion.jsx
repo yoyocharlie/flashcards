@@ -11,7 +11,7 @@ const QuizQuestion = ({ currentQuiz, quizActive, setQuizActive, qNumber, setQNum
     if(qNumber > quizData.quiz[currentQuiz].questions.length - 1){
       setShowFinalResults(!showFinalResults)
     }
-  }, [qNumber])
+  }, [qNumber, currentQuiz, showFinalResults])
 
 
   const qId = quizData.quiz[currentQuiz].questions.map(question => {
@@ -22,7 +22,7 @@ const QuizQuestion = ({ currentQuiz, quizActive, setQuizActive, qNumber, setQNum
     return question.q
   })
 
-  const qAnswers = quizData.quiz[currentQuiz].questions[qNumber].answers.map((a, i) => a)
+  const qAnswers = quizData.quiz[currentQuiz].questions[qNumber].answers.map((a) => a)
 
   
   const handleClick = (e) => {
@@ -66,15 +66,15 @@ const QuizQuestion = ({ currentQuiz, quizActive, setQuizActive, qNumber, setQNum
       )
     })
 
-  function shuffleArray(array) {
-    for (var i = array.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var temp = array[i];
-      array[i] = array[j];
-      array[j] = temp;
-    }
-    return array
-}
+  // function shuffleArray(array) {
+  //   for (var i = array.length - 1; i > 0; i--) {
+  //     var j = Math.floor(Math.random() * (i + 1));
+  //     var temp = array[i];
+  //     array[i] = array[j];
+  //     array[j] = temp;
+  //   }
+  //   return array
+  // }
 
 
 
