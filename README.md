@@ -17,4 +17,4 @@
 * Knowledge of how to CRUD using a database.
 * Knowledge of prop drilling through delivering props to components.
 
-### Thank you, Inventive for taking the time to speak with me and for giving me the opportunity to work on this take-home. I hope we get to chat soon!
+### Thank you, Inventive, for taking the time to speak with me and for giving me the opportunity to work on this take-home. I hope we get to chat soon!
