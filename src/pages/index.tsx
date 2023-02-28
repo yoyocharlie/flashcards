@@ -23,7 +23,7 @@ const Home: NextPage = () => {
         if (user) {
           const uid = user.uid;
           setUserId(uid);
-          refresh(user.uid);
+          await refresh(user.uid);
         } else {
           console.log("No user signed in")
         }
